@@ -8,6 +8,16 @@ AverageTemp = []
 def CtoF(temp): #function to convert celcius to fahrenheit
     return round(temp * 9/5 + 32, 2)
 
+def choosing(message, min, max):
+    while True:
+        var = int(input(message))
+        if min <= var <= max:
+            break
+        else:
+            print("Not a valid option")
+    return var
+
+
 #works
 def updateAvgTemp():
     Total = 0
@@ -39,28 +49,17 @@ def chooseDay(num): #converts numbers to days
             return 'Sunday'
 
 def menu():
-    while True:
-        choice = int(input("Choose Action:\n\n1. Input temperatures\n2. Show daily average\n3. Show weekly average\n4. Show temperature\n5. Show all temperatures\n6. Leave\n\n"))
-        if choice > 0 and choice < 7:
-            return choice
-        else:
-            print("Not a valid option")
-        
+    choice = choosing("Choose Action:\n\n1. Input temperatures\n2. Show daily average\n3. Show weekly average\n4. Show temperature\n5. Show all temperatures\n6. Leave\n\n", 1, 6)
+    return choice    
 
 #works
 def inputTemp(): 
-    while True:
-        day = int(input("Choose a day:\n\n1. Monday\n2. Tuesday\n3. Wednesday\n4. Thursday\n5. Friday\n\n"))
-        if day >= 1 and day <= 7:
-            break
+    day = choosing("Choose a day:\n\n1. Monday\n2. Tuesday\n3. Wednesday\n4. Thursday\n5. Friday\n\n", 1, 7)
     print(f"Day: {chooseDay(day)}")
-    while True:
-        hour = int(input("Enter an hour (1-24): "))
-        if hour > 0 and hour < 25:
-            break
+    hour = choosing("Enter an hour (1-24): ", 1, 24)
     while True:
         temp = float(input("Enter temperature: "))
-        if temp > -20.00 and temp < 50.00:
+        if -20.00 <= temp <= 50.00:
             break
         else:
             print("Value out of range")
@@ -70,16 +69,8 @@ def inputTemp():
 
 
 def dailyAvg():
-    while True:
-        day = int(input("Choose a day:\n\n1. Monday\n2. Tuesday\n3. Wednesday\n4. Thursday\n5. Friday\n\n"))
-        if day >= 1 and day <= 7:
-            break
-    while True:
-        version = int(input("1. Celcius\n2. Fahrenheit\n\n"))
-        if version > 0 and version < 3:
-            break
-        else:
-            print("Not a valid option")
+    day = choosing("Choose a day:\n\n1. Monday\n2. Tuesday\n3. Wednesday\n4. Thursday\n5. Friday\n\n", 1, 7)
+    version = choosing("1. Celcius\n2. Fahrenheit\n\n", 1, 2)
     if version == 1:
         print(f"Average temperaure of {chooseDay(day)} in Celcius: {AverageTemp[day]}\n")
     else:
@@ -92,12 +83,7 @@ def weeklyAvg():
         for j in range(len(Readings[i])):
             Total += Readings[i][j]
             Counter += 1
-    while True:
-        version = int(input("1. Celcius\n2. Fahrenheit\n\n"))
-        if version > 0 and version < 3:
-            break
-        else:
-            print("Not a valid option")
+    version = choosing("1. Celcius\n2. Fahrenheit\n\n", 0, 3)
     avg = round(Total/Counter, 2)
     if version == 1:
         print(f"Average temperature for the week in Celcius: {avg}\n")
@@ -105,15 +91,9 @@ def weeklyAvg():
         print(f"Average temperature for the week in Fahrenheit: {CtoF(avg)}\n")
 
 def showTemp():
-    while True:
-        day = int(input("Choose a day:\n\n1. Monday\n2. Tuesday\n3. Wednesday\n4. Thursday\n5. Friday\n\n"))
-        if day >= 1 and day <= 7:
-            break
+    day = choosing("Choose a day:\n\n1. Monday\n2. Tuesday\n3. Wednesday\n4. Thursday\n5. Friday\n\n", 1, 7)
     print(f"Day: {chooseDay(day)}")
-    while True:
-        hourIndex = int(input("Enter an hour (1-24): "))
-        if hourIndex > 0 and hourIndex < 25:
-            break
+    hourIndex = choosing("Enter an hour (1-24): ", 1, 24)
     temp = Readings[day][hourIndex]
     print(f"Temperature at {hourIndex}:00 on {chooseDay(day)}\nCelcius: {temp}\nFahrenheit: {CtoF(temp)}")
 
@@ -136,4 +116,3 @@ while True:
             showAllTemp()
         case 6:
             break
-
