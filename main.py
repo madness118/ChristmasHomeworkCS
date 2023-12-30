@@ -8,7 +8,7 @@ AverageTemp = []
 def CtoF(temp): #function to convert celcius to fahrenheit
     return round(temp * 9/5 + 32, 2)
 
-def choosing(message, min, max, datatype=int):
+def choosing(message, min, max, datatype=int): #function to validate user inputs
         while True:
             try:
                 while True:
