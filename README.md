@@ -1,6 +1,6 @@
-# <div align="center">Project Title</div>
+# <div align="center">2023 Christmas Homework</div>
 
-<div align="center"><i>Tagline</i></div>
+<div align="center"><i>Madelyn Lee</i></div>
 
 ***
 
