@@ -8,14 +8,23 @@ AverageTemp = []
 def CtoF(temp): #function to convert celcius to fahrenheit
     return round(temp * 9/5 + 32, 2)
 
-def choosing(message, min, max):
-    while True:
-        var = int(input(message))
-        if min <= var <= max:
-            break
-        else:
-            print("Not a valid option")
-    return var
+def choosing(message, min, max, datatype=int):
+        while True:
+            try:
+                while True:
+                    var = datatype(input(message))
+                    if min <= var <= max:
+                        break
+                    else:
+                        print("Value cannot be accepted")
+                break
+            except TypeError:
+                print("Please enter an integer")
+                continue
+            except ValueError:
+                print("Please enter an integer")
+                continue
+        return var
 
 
 #works
@@ -57,12 +66,7 @@ def inputTemp():
     day = choosing("Choose a day:\n\n1. Monday\n2. Tuesday\n3. Wednesday\n4. Thursday\n5. Friday\n\n", 1, 7)
     print(f"Day: {chooseDay(day)}")
     hour = choosing("Enter an hour (1-24): ", 1, 24)
-    while True:
-        temp = float(input("Enter temperature: "))
-        if -20.00 <= temp <= 50.00:
-            break
-        else:
-            print("Value out of range")
+    temp = choosing("Enter temperature: ", -20.00, 50.00, float)
     Readings[day][hour] = round(temp, 2)
     print(f"Updated hour {hour} of {chooseDay(day)}\n")
     updateAvgTemp()
