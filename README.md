@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
-- [Project Title](#project-title)
+- [2023 Christmas Homework](#project-title)
   - [Table of Contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Requirements](#requirements)
